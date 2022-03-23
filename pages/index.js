@@ -2,7 +2,6 @@ import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import { supabase } from "../supabase-client";
 import { useSession } from "../utils/user-context";
-import ViewBike from "../bikes/[id]";
 
 export default function Home({ bikes }) {
   const { session } = useSession();
@@ -10,9 +9,6 @@ export default function Home({ bikes }) {
   return (
     <>
       <h1>Bikes</h1>
-
-      <ViewBike />
-
       <ul>
         {(bikes || []).map((bike) => (
           <li key={bike.id}>
