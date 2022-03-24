@@ -72,6 +72,10 @@ export default function ViewBike({ bike }) {
 
 export const getServerSideProps = async (context) => {
   // get the user using the "sb:token" cookie
+
+
+
+
   const { user } = await supabase.auth.api.getUserByCookie(context.req)
   if (!user) {
     return {
@@ -83,11 +87,15 @@ export const getServerSideProps = async (context) => {
   }
 
   supabase.auth.setAuth(context.req.cookies["sb:token"])
-  const { data: bike, error } = await supabase
-    .from('bikes')
-    .select('*')
-    .eq('id', context.query.id)
-    .single()
+
+  const { data: bikes, error } = await supabase.from('bikes').select();
+
+
+  // const { data: bike, error } = await supabase
+  //   .from('bikes')
+  //   .select('*')
+  //   .eq('id', context.query.id)
+  //   .single()
 
   if (error) {
     return {
