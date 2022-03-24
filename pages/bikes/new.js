@@ -44,7 +44,7 @@ export default function NewBike() {
             user_id: session.user.id
           });
 
-          const { data, error } = await supabase.from("bikes").select().csv();
+          // const { data, error } = await supabase.from("bikes").select().csv();
 
           router.push("/");
         }}
